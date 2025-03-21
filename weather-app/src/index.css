@@ -141,6 +141,7 @@ h1 {
     font-size: clamp(1.3rem, 0.8033rem + 1.8698vw, 2rem);
     font-weight: 700;
     text-transform: capitalize;
+    text-align: center;
 }
 
 .card .weather-img {
