@@ -158,3 +158,7 @@ ul .button-container .move-btns {
 ul .button-container .move-btns:hover {
   background-color: var(--dark-hover);
 }
+
+ul .button-container .move-btns:active {
+  background-color: hsl(195, 100%, 10%);
+}
