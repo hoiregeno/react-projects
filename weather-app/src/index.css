@@ -134,7 +134,7 @@ h1 {
 .card .feels-like-display,
 .card .humidity-display {
     font-size: 15px;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
 .card .desc-display {
