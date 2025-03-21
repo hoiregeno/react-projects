@@ -162,3 +162,13 @@ ul .button-container .move-btns:hover {
 ul .button-container .move-btns:active {
   background-color: hsl(195, 100%, 10%);
 }
+
+@media screen and (max-width: 380px) {
+  ul li {
+    flex-direction: column;
+  }
+
+  ul .button-container {
+    margin: 0 auto;
+  }
+}
