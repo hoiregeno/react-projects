@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
 const WeatherApp = () => {
+    // State variables
     const [cityName, setCityName] = useState('');
     const [weather, setWeather] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const apiKey = import.meta.env.VITE_API_KEY;
 
+    // Fetch weather data
     const getWeatherData = async (city) => {
         try {
             const response = await fetch(
@@ -21,20 +23,25 @@ const WeatherApp = () => {
         }
     };
 
+    // Handle user input and form submission
     const handleCityInput = async (event) => {
         event.preventDefault();
 
+        // Input validation
         if (!cityName.trim() || !isNaN(cityName)) {
             setErrorMessage('Please enter a city.');
             setWeather(null);
             return;
         }
 
+        // Fetch weather data and update state.
         const data = await getWeatherData(cityName);
         if (data) {
             setWeather(data);
             setErrorMessage('');
         }
+
+
         setCityName('');
     };
 
