@@ -5,21 +5,27 @@ const WeatherApp = () => {
     const [cityName, setCityName] = useState('');
     const [weather, setWeather] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false); // New state for loading
     const apiKey = import.meta.env.VITE_API_KEY;
 
     // Fetch weather data
     const getWeatherData = async (city) => {
         try {
+            setLoading(true);  // Set loading to true before fetching data
             const response = await fetch(
                 `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
             );
             if (!response.ok) {
                 throw new Error(`Could not locate ${city}.`);
             }
-            return await response.json();
+            const data = await response.json();
+            setWeather(data); // Set weather data once it's fetched
+            setErrorMessage(''); // Reset error message on success
         } catch (error) {
-            setErrorMessage(error.message);
-            console.error(error);
+            setErrorMessage(error.message); // Set error message if there’s an issue
+            setWeather(null); // Reset weather data
+        } finally {
+            setLoading(false); // Set loading to false after fetching data
         }
     };
 
@@ -34,15 +40,18 @@ const WeatherApp = () => {
             return;
         }
 
-        // Fetch weather data and update state.
-        const data = await getWeatherData(cityName);
-        if (data) {
-            setWeather(data);
-            setErrorMessage('');
-        }
+        // Fetch weather data and update state
+        await getWeatherData(cityName);
 
-
+        // Clear input after submission
         setCityName('');
+    };
+
+    // Handle city name change
+    const handleInputChange = (event) => {
+        setCityName(event.target.value);
+        setErrorMessage('');
+        setWeather(null);
     };
 
     return (
@@ -55,11 +64,7 @@ const WeatherApp = () => {
                     placeholder="Enter a city"
                     className="search-input"
                     value={cityName}
-                    onChange={event => {
-                        setCityName(event.target.value);
-                        setErrorMessage('');
-                        setWeather(null);
-                    }}
+                    onChange={handleInputChange}
                 />
                 <button className="search-button" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -68,13 +73,22 @@ const WeatherApp = () => {
                 </button>
             </form>
 
-            {errorMessage && (
+            {/* Display loading spinner */}
+            {loading && (
+                <div className="loading-spinner">
+                    <div className="spinner"></div>
+                </div>
+            )}
+
+            {/* Display error message */}
+            {errorMessage && !loading && (
                 <div className="card">
                     <p className="error-display">{errorMessage}</p>
                 </div>
             )}
 
-            {weather && (
+            {/* Display weather data */}
+            {weather && !loading && (
                 <div className="card">
                     <h2 className="city-display">
                         {weather.name}, {weather.sys.country}
