@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 const TempConverter = () => {
-    const [temp, setTemp] = useState(0);
+    const [temp, setTemp] = useState(null);
     const [unit, setUnit] = useState("celsius");
 
     const convertedTemp = () => {
