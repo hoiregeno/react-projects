@@ -42,6 +42,7 @@ const TempConverter = () => {
 
             {temp && (
                 <p>
+                    <b>Result:</b><br />
                     {temp}°{displayUnit()} ➡️ {convertedTemp().toFixed(2)}°{displayResultUnit()}
                 </p>
             )
