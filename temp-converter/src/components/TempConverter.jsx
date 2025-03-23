@@ -1,38 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const TempConverter = () => {
     const [temp, setTemp] = useState(0);
-    const [unit, setUnit] = useState('fahrenheit');
+    const [unit, setUnit] = useState("celsius");
 
-    // Function to convert temperature
-    const convertTemperature = (temp, unit) => {
-        return unit === 'fahrenheit' ? (temp - 32) * (5 / 9) : temp * (9 / 5) + 32; // Fahrenheit to Celsius : Celsius to Fahrenheit
-    };
+    const convertedTemp = () => {
+        return unit === "celsius" ? (temp - 32) * (5 / 9) : ((temp * 9) / 5) + 32;
+    }
 
-    // Convert the entered temperature based on selected unit
-    const convertedTemp = convertTemperature(temp, unit);
+    const displayUnit = () => {
+        return unit === "celsius" ? "F" : "C";
+    }
+
+    const displayResultUnit = () => {
+        return unit === "celsius" ? "C" : "F";
+    }
 
     return (
-        <>
+        <div className="wrapper">
+            <h1>Temperature Converter</h1>
             <form>
                 <input
                     type="number"
                     placeholder="Enter temperature"
                     value={temp}
-                    onChange={(e) => setTemp(e.target.value)}
+                    onChange={e => setTemp(e.target.value)}
                 />
-                <select name="units" value={unit} onChange={e => setUnit(e.target.value)}>
-                    <option value="fahrenheit">Fahrenheit</option>
-                    <option value="celsius">Celsius</option>
+                <select
+                    name="units"
+                    value={unit}
+                    onChange={e => setUnit(e.target.value)}
+                >
+                    <option value="fahrenheit">
+                        Fahrenheit
+                    </option>
+                    <option value="celsius">
+                        Celsius
+                    </option>
                 </select>
             </form>
 
-            <p>
-                {temp}° {unit === 'fahrenheit' ? 'F' : 'C'} is equal to{' '}
-                {convertedTemp.toFixed(2)}° {unit === 'fahrenheit' ? 'C' : 'F'}.
-            </p>
-        </>
-    );
-};
+            {temp && (
+                <p>
+                    {temp}°{displayUnit()} ➡️ {convertedTemp().toFixed(2)}°{displayResultUnit()}
+                </p>
+            )
+            }
+        </div>
+    )
+}
 
-export default TempConverter;
+export default TempConverter
