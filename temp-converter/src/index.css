@@ -22,7 +22,7 @@
 }
 
 .wrapper form {
-    width: min(280px, 100%);
+    width: min(280px, 90vw);
     display: flex;
     justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.1);
@@ -37,10 +37,25 @@ form input[type="number"] {
     border: none;
     outline: none;
     background: none;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
+    appearance: none;
+    /* Prevents number input arrows */
+}
+
+form select {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    background-color: white;
 }
 
 .wrapper p {
     margin-top: 2rem;
     line-height: 1.75rem;
+    font-size: 1.2rem;
 }
