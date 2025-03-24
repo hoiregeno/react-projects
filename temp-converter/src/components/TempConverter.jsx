@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 
 const TempConverter = () => {
-    const [temp, setTemp] = useState(null);
+    const [temp, setTemp] = useState('');
     const [unit, setUnit] = useState("celsius");
 
+
+
     const convertedTemp = () => {
-        return unit === "celsius" ? (temp - 32) * (5 / 9) : ((temp * 9) / 5) + 32;
-    }
+        if (temp === '' || isNaN(temp)) return '';
+        const tempValue = parseFloat(temp);
 
-    const displayUnit = () => {
-        return unit === "celsius" ? "F" : "C";
-    }
-
-    const displayResultUnit = () => {
-        return unit === "celsius" ? "C" : "F";
-    }
+        return unit === "celsius"
+            ? ((tempValue * 9) / 5) + 32
+            : (tempValue - 32) * (5 / 9);
+    };
 
     return (
         <div className="wrapper">
@@ -32,10 +31,10 @@ const TempConverter = () => {
                     onChange={e => setUnit(e.target.value)}
                 >
                     <option value="fahrenheit">
-                        Fahrenheit
+                        °F
                     </option>
                     <option value="celsius">
-                        Celsius
+                        °C
                     </option>
                 </select>
             </form>
@@ -43,7 +42,7 @@ const TempConverter = () => {
             {temp && (
                 <p>
                     <b>Result:</b><br />
-                    {temp}°{displayUnit()} ➡️ {convertedTemp().toFixed(2)}°{displayResultUnit()}
+                    {temp}°{unit === "celsius" ? "C" : "F"} ➡️ {convertedTemp().toFixed(2)}°{unit === "celsius" ? "F" : "C"}
                 </p>
             )
             }
