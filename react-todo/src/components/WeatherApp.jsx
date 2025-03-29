@@ -22,8 +22,6 @@ const WeatherApp = () => {
                 const data = await response.json();
 
                 return data;
-
-                return await response.json();
             }
             catch (error) {
                 setErrorMessage(error.message);
@@ -37,8 +35,12 @@ const WeatherApp = () => {
         event.preventDefault();
 
         if (location.trim() !== "") {
+            // Clear previous weather data at the start of a new search
+            setWeatherData(null);
+            setErrorMessage("");
             // Start the loading animation when the search begins
             setIsLoading(true);
+
             try {
                 const data = await getWeatherData(location);
                 if (data) {
