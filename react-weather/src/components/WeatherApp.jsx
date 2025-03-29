@@ -106,10 +106,10 @@ const WeatherApp = () => {
                         {weatherData.name}, {weatherData.sys.country}
                     </h1>
                     <h2 className="temp-display">
-                        {(weatherData.main.temp - 273.15).toFixed(1)}°C
+                        {Math.floor((weatherData.main.temp - 273.15))}°C
                     </h2>
                     <p className="feels-display">
-                        Feels like: {(weatherData.main.feels_like - 273.15).toFixed(1)}°C
+                        Feels like: {Math.floor((weatherData.main.feels_like - 273.15))}°C
                     </p>
                     <p className="humidity-display">
                         Humidity: {weatherData.main.humidity}%
