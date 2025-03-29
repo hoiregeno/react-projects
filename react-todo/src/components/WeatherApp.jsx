@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './WeatherApp.css';
 
 const WeatherApp = () => {
     // Declare state variables for location input and weather data.
@@ -42,6 +43,7 @@ const WeatherApp = () => {
 
     return (
         <div className='container'>
+            <h1 className="title">Weather App</h1>
             <form className="weather-form" onSubmit={handleInputChange}>
                 <input
                     type="text"
@@ -57,7 +59,7 @@ const WeatherApp = () => {
             {weatherData && (
                 <div className="card">
                     <h1 className='city-display'>
-                        {weatherData.name}
+                        {weatherData.name}, {weatherData.sys.country}
                     </h1>
                     <h2 className="temp-display">
                         {(weatherData.main.temp - 273.15).toFixed(2)}°C
