@@ -3,6 +3,7 @@ import './WeatherApp.css';
 
 const WeatherApp = () => {
     // Declare state variables for location input and weather data.
+    const [isLoading, setIsLoading] = useState(false);
     const [location, setLocation] = useState("");
     const [weatherData, setWeatherData] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
@@ -15,7 +16,7 @@ const WeatherApp = () => {
                 const response = await fetch(url);
 
                 if (!response.ok) {
-                    throw new Error(`Could not locate ${city}`);
+                    throw new Error(`Could not locate ${city}.`);
                 }
 
                 const data = await response.json();
@@ -36,6 +37,8 @@ const WeatherApp = () => {
         event.preventDefault();
 
         if (location.trim() !== "") {
+            // Start the loading animation when the search begins
+            setIsLoading(true);
             try {
                 const data = await getWeatherData(location);
                 if (data) {
@@ -48,6 +51,8 @@ const WeatherApp = () => {
                 setWeatherData(null);
                 throw error;
             }
+            // Stop the loading animation after fetching is complete
+            setIsLoading(false);
         }
         else {
             setErrorMessage("Please enter a city.");
@@ -69,6 +74,7 @@ const WeatherApp = () => {
                     onChange={e => {
                         setLocation(e.target.value);
                         setErrorMessage("");
+                        setWeatherData(null);
                     }}
                     className='city-input'
                 />
@@ -79,8 +85,15 @@ const WeatherApp = () => {
                 </button>
             </form>
 
+            {/* Added spinner to show loading state */}
+            {isLoading && (
+                <div className="loading-animation">
+                    <div className="spinner"></div>
+                </div>
+            )}
+
             {errorMessage && (
-                <div className="card">
+                <div className="error-card">
                     <p className="error-message">{errorMessage}</p>
                 </div>
             )}
