@@ -108,7 +108,7 @@
 .temp-display {
     font-size: var(--font-l);
     font-weight: var(--weight-800);
-    color: hsl(190, 100%, 35%);
+    color: hsl(190, 100%, 60%);
     margin: 10px 0;
 }
 
@@ -124,6 +124,10 @@
     max-width: 100%;
     height: auto;
     object-fit: cover;
+}
+
+.description-display{
+    color: hsl(190, 100%, 60%);
 }
 
 /* Added CSS for the loading animation container */
