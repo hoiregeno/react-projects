@@ -5,20 +5,39 @@ const WeatherApp = () => {
     const [location, setLocation] = useState("");
     const [weatherData, setWeatherData] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
+    const apiKey = import.meta.env.VITE_API_KEY;
 
     const getWeatherData = async (city) => {
         if (city) {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
             try {
-                const response = await fetch();
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`Could not locate ${city}`);
+                }
+
+                return await response.json();
             }
             catch (error) {
+                setErrorMessage(error.message);
                 console.error(error);
             }
         }
     }
 
-    const handleInputChange = (event) => {
+    const handleInputChange = async (event) => {
         event.preventDefault();
+
+        try {
+            const data = await getWeatherData(location);
+            console.log(data);
+            setWeatherData(data);
+            setErrorMessage("");
+        }
+        catch (error) {
+            throw error;
+        }
     }
 
     return (
@@ -34,9 +53,27 @@ const WeatherApp = () => {
                     Find
                 </button>
             </form>
+
             {weatherData && (
                 <div className="card">
-
+                    <h1 className='city-display'>
+                        {weatherData.name}
+                    </h1>
+                    <h2 className="temp-display">
+                        {(weatherData.main.temp - 273.15).toFixed(2)}°C
+                    </h2>
+                    <p className="feels-display">
+                        {(weatherData.main.feels_like - 273.15).toFixed(2)}°C
+                    </p>
+                    <p className="humidity-display">
+                        Humidity: {weatherData.main.humidity}%
+                    </p>
+                    <p className="description-display">
+                        {weatherData.weather[0].description}
+                    </p>
+                    <img
+                        src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="weather icon"
+                    />
                 </div>
             )}
         </div>
