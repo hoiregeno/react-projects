@@ -18,10 +18,15 @@ const WeatherApp = () => {
                     throw new Error(`Could not locate ${city}`);
                 }
 
+                const data = await response.json();
+
+                return data;
+
                 return await response.json();
             }
             catch (error) {
                 setErrorMessage(error.message);
+                setWeatherData(null);
                 console.error(error);
             }
         }
@@ -30,15 +35,27 @@ const WeatherApp = () => {
     const handleInputChange = async (event) => {
         event.preventDefault();
 
-        try {
-            const data = await getWeatherData(location);
-            console.log(data);
-            setWeatherData(data);
-            setErrorMessage("");
+        if (location.trim() !== "") {
+            try {
+                const data = await getWeatherData(location);
+                if (data) {
+                    setWeatherData(data);
+                    setErrorMessage("");
+                }
+            }
+            catch (error) {
+                setErrorMessage(error.message);
+                setWeatherData(null);
+                throw error;
+            }
         }
-        catch (error) {
-            throw error;
+        else {
+            setErrorMessage("Please enter a city.");
+            setWeatherData(null);
+            return;
         }
+
+        setLocation("");
     }
 
     return (
@@ -49,7 +66,10 @@ const WeatherApp = () => {
                     type="text"
                     placeholder='Enter city'
                     value={location}
-                    onChange={e => setLocation(e.target.value)}
+                    onChange={e => {
+                        setLocation(e.target.value);
+                        setErrorMessage("");
+                    }}
                     className='city-input'
                 />
                 <button type="submit" className='search-button'>
@@ -58,6 +78,12 @@ const WeatherApp = () => {
                     </svg>
                 </button>
             </form>
+
+            {errorMessage && (
+                <div className="card">
+                    <p className="error-message">{errorMessage}</p>
+                </div>
+            )}
 
             {weatherData && (
                 <div className="card">
@@ -76,7 +102,7 @@ const WeatherApp = () => {
                     <p className="description-display">
                         {weatherData.weather[0].description}
                     </p>
-                    <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="weather icon" />
+                    <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`} alt="weather icon" />
                 </div>
             )}
         </div>
