@@ -71,9 +71,7 @@ const WeatherApp = () => {
                     <p className="description-display">
                         {weatherData.weather[0].description}
                     </p>
-                    <img
-                        src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="weather icon"
-                    />
+                    <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="weather icon" />
                 </div>
             )}
         </div>
