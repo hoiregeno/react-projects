@@ -1,12 +1,12 @@
 :root{
     --bg-color: hsl(190, 100%, 10%);
-    --text-color: hsl(0, 0%, 100%);
+    --text-color: hsl(0, 0%, 90%);
 }
 
 .container{
     width: 100vw;
     min-height: 100vh;
-    background-color: var(--bg-color);
+    background: linear-gradient(135deg, var(--bg-color), hsl(0, 0%, 10%));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,6 +75,8 @@
     padding: .5rem 1rem;
     border-radius: 50px;
     margin-bottom: .75rem;
+    /* Added glowing box shadow animation */
+    animation: glow 1.5s ease-in-out infinite;
 }
 
 .error-container .error-message{
@@ -140,4 +142,13 @@
 
 .controls .delete-button:hover{
     background-color: hsl(0, 90%, 55%);
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 30px hsl(207, 90%, 50%);
+    }
+    50% {
+        box-shadow: 0 0 10px hsl(207, 90%, 50%);
+    }
 }
