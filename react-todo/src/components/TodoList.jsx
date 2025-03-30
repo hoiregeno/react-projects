@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './TodoList.css';
 
 const TodoList = () => {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []);
     const [newTask, setNewTask] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
+    useEffect(() => {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, [tasks]);
 
     const handleListInput = (e) => {
         e.preventDefault();
