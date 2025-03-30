@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './TodoList.css';
 
 const TodoList = () => {
     const [tasks, setTasks] = useState([]);
@@ -84,30 +85,32 @@ const TodoList = () => {
                 </div>
             )}
 
-            <ol className='list-container'>
-                {tasks.map((task, id) =>
-                    <li key={id}>
-                        <span className='task-display'>{task}</span>
-                        <div className="controls">
-                            <button className="delete-button" onClick={() => deleteTask(id)}>Delete</button>
-                            <button
-                                className="move-buttons"
-                                onClick={() => moveTaskUp(id)}
-                                disabled={id === 0}
-                            >
-                                👆
-                            </button>
-                            <button
-                                className="move-buttons"
-                                onClick={() => moveTaskDown(id)}
-                                disabled={id === tasks.length - 1}
-                            >
-                                👇
-                            </button>
-                        </div>
-                    </li>
-                )}
-            </ol>
+            {tasks.length > 0 && (
+                <ol className='list-container'>
+                    {tasks.map((task, id) =>
+                        <li key={id}>
+                            <span className='task-display'>{task}</span>
+                            <div className="controls">
+                                <button className="delete-button" onClick={() => deleteTask(id)}>Delete</button>
+                                <button
+                                    className="move-buttons"
+                                    onClick={() => moveTaskUp(id)}
+                                    disabled={id === 0}
+                                >
+                                    👆
+                                </button>
+                                <button
+                                    className="move-buttons"
+                                    onClick={() => moveTaskDown(id)}
+                                    disabled={id === tasks.length - 1}
+                                >
+                                    👇
+                                </button>
+                            </div>
+                        </li>
+                    )}
+                </ol>
+            )}
         </div>
     )
 }
