@@ -25,7 +25,9 @@ const TodoList = () => {
             return;
         }
 
-        setTasks(t => [...t, newTask]);   // Add the task if it's valid
+        const capitalizedTask = trimmedTask.charAt(0).toUpperCase() + trimmedTask.slice(1);
+
+        setTasks(t => [...t, capitalizedTask]);   // Add the task if it's valid
         setNewTask(""); // Clear input
         setErrorMessage(""); // Clear error message.
     }
