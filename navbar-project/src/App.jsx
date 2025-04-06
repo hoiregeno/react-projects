@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from "./components/navbar/Navbar.jsx";
+import Navbar from "./component/Navbar.jsx"
 
 const App = () => {
-  const currentTheme = localStorage.getItem('current_theme');
-  const [theme, setTheme] = useState(currentTheme ? currentTheme : 'light');
-
-  useEffect(() => {
-    localStorage.setItem('current_theme', theme);
-  }, [theme]);
+  const links = [
+    { name: "Home", url: "/" },
+    { name: "About", url: "/about" },
+    { name: "Contact", url: "/contact" }
+  ];
 
   return (
-    <div className={`container ${theme}`}>
-      <Navbar theme={theme} setTheme={setTheme} />
-    </div>
+    <Navbar links={links} />
   )
 }
 
