@@ -4,13 +4,15 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-.container{
-    width: 100vw;
-    min-height: 100vh;
-    background-color: #ced8ff;
-    transition: .3s ease;
 
+li{
+    list-style: none;
 }
-.container.dark{
-    background-color: #222;
+
+a{
+    text-decoration: none;
+}
+
+body{
+    min-height: 100vh;
 }
