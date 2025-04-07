@@ -1,14 +1,16 @@
 import Navbar from "./component/Navbar.jsx"
 
 const App = () => {
+
   const links = [
-    { name: "Home", url: "/" },
-    { name: "About", url: "/about" },
-    { name: "Contact", url: "/contact" }
+    { name: "Home", url: "#home" },
+    { name: "About", url: "#about" },
+    { name: "Portfolio", url: "#portfolio" },
+    { name: "Contact", url: "#contact" }
   ];
 
   return (
-    <Navbar links={links} />
+    <Navbar navLinks={links} />
   )
 }
 
