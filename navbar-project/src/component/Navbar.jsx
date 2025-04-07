@@ -1,11 +1,12 @@
 import './Navbar.css'
 
-const Navbar = (props) => {
+const Navbar = ({ navLinks }) => {
 
     return (
         <nav className="navbar">
-            <ul>
-                {props.links.map(link => (
+            <h1 className="brand">Brand</h1>
+            <ul className="link-container">
+                {navLinks.map(link => (
                     <li key={link.name}>
                         <a href={link.url}>
                             {link.name}
