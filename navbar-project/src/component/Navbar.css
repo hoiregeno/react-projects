@@ -7,7 +7,7 @@
     --padding-btn: 1rem;
     --font-brand: 2rem;
     --font-link: 1.05rem;
-    --transition-speed: 0.3s;
+    --transition-speed: 300ms;
     --backdrop-bg: rgba(0, 0, 0, 0.5);
     --icon-size: 32px;
 }
