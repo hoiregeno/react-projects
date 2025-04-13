@@ -2,10 +2,10 @@ import Navbar from "./components/Navbar.jsx";
 
 function App() {
   const links = [
-    { name: "Home", url: "#home" },
-    { name: "About", url: "#about" },
-    { name: "Portfolio", url: "#portfolio" },
-    { name: "Contact", url: "#contact" }];
+    { id: 1, name: "Home", url: "#home" },
+    { id: 2, name: "About", url: "#about" },
+    { id: 3, name: "Portfolio", url: "#portfolio" },
+    { id: 4, name: "Contact", url: "#contact" }];
 
   return (
     <Navbar navLinks={links} />
