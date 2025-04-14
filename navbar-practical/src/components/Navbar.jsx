@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Navbar.css';
 
 function Navbar({ navLinks }) {
     // State to manage the open/close state of the navbar.
@@ -8,14 +9,14 @@ function Navbar({ navLinks }) {
     return (
         <>
             <button className="open-sidebar-btn">
-                <i class='bx bx-menu'></i>
+                <i className="bx bx-menu"></i>
             </button>
 
             <nav>
-                <ul className='links-container'>
+                <ul className="links-container">
                     <li>
                         <button className="close-sidebar-btn">
-                            <i class='bx bx-x'></i>
+                            <i className="bx bx-x"></i>
                         </button>
                     </li>
                     {navLinks.map((link) => (
