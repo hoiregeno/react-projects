@@ -1,4 +1,5 @@
-import Navbar from "./components/Navbar/Navbar.jsx";
+import Navbar from "./components/Navbar.jsx";
+import MainSection from "./components/MainSection.jsx";
 
 function App() {
 
@@ -10,7 +11,11 @@ function App() {
     { id: 4, name: "Contact", url: "#contact" }];
 
   return (
-    <Navbar navLinks={links} />
+    <>
+      <Navbar navLinks={links} />
+      <MainSection />
+    </>
+
   );
 }
 
