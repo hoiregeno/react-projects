@@ -1,3 +1,4 @@
+import './MainSection.css';
 
 function MainSection() {
 
