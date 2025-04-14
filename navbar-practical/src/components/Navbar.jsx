@@ -5,17 +5,25 @@ function Navbar({ navLinks }) {
     // State to manage the open/close state of the navbar.
     const [isOpen, setIsOpen] = useState(false);
 
+    function openSidebar() {
+        setIsOpen(true);
+    }
+
+    function closeSidebar() {
+        setIsOpen(false);
+    }
+
     // The links are passed as props from the parent component.
     return (
         <>
-            <button className="open-sidebar-btn">
+            <button onClick={openSidebar} className="open-sidebar-btn">
                 <i className="bx bx-menu"></i>
             </button>
 
-            <nav>
+            <nav className={isOpen ? "show-sidebar" : ""}>
                 <ul className="links-container">
                     <li>
-                        <button className="close-sidebar-btn">
+                        <button onClick={closeSidebar} className="close-sidebar-btn">
                             <i className="bx bx-x"></i>
                         </button>
                     </li>
