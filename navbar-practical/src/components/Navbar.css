@@ -1,0 +1,36 @@
+.open-sidebar-btn, nav li:first-child{
+    display: none;
+}
+
+nav{
+    background-color: #333;
+    width: 100%;
+    height: 60px;
+}
+
+nav .links-container{
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    list-style: none;
+}
+
+nav li{
+    display: flex;
+}
+
+nav a{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: #fff;
+    padding: 0 1rem;
+}
+
+nav li:nth-child(2){
+    margin-right: auto;
+}
+
+nav a:hover{
+    background-color: #444;
+}
