@@ -1,6 +1,8 @@
 import Navbar from "./components/Navbar.jsx";
 
 function App() {
+
+  // An array of objects representing the navigation links.
   const links = [
     { id: 1, name: "Home", url: "#home" },
     { id: 2, name: "About", url: "#about" },
