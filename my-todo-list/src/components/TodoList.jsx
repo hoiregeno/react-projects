@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './TodoList.module.css';
 
 function TodoList() {
-    const [tasks, setTasks] = useState([]); // Task list state
+    // 1)  Lazy init from localStorage, so you don't block renders.
+    const [tasks, setTasks] = useState(() => {
+        try {
+            return JSON.parse(localStorage.getItem("tasks")) || [];
+        }
+        catch {
+            return [];
+        }
+    }); // Task list state
     const [newTask, setNewTask] = useState(""); // New task input state
     const [errorMessage, setErrorMessage] = useState(""); // Error message state
+
+    // 2) Sync any change of "tasks" back to localStorage
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
 
     // Function to validate a task
     function validTask(task, existingTask) {
