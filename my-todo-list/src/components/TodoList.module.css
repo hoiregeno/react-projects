@@ -1,0 +1,110 @@
+/* TodoList.module.css */
+
+/* App title */
+.title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Form wrapper */
+.todoForm {
+    display: flex;
+    gap: 0.5rem;
+    width: min(500px, 100%);
+    margin: 1rem auto;
+}
+
+/* Text input */
+.taskInput {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Add button */
+.addButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.addButton:hover {
+    background-color: #0056b3;
+}
+
+/* Error message text */
+.errorMessage {
+    color: #d9534f;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* “No tasks” message */
+.noTaskMessage {
+    color: #777;
+    text-align: center;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* Task list */
+.taskList {
+    list-style: none;
+    width: min(600px, 100%);
+    margin: 1rem auto 0;
+    border: 1px solid #ccc;
+    padding: 0 1rem;
+    border-radius: 5px;
+}
+
+/* Individual task item */
+.taskItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+}
+
+/* Buttons container for each task */
+.controls {
+    display: flex;
+    gap: 0.85rem;
+}
+
+/* Delete button */
+.deleteBtn {
+    background: transparent;
+    border: none;
+    color: #d9534f;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+
+.deleteBtn:hover {
+    color: #a71d2a;
+}
+
+/* Move up/down buttons */
+.moveBtns {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.moveBtns:hover {
+    color: #0056b3;
+}
