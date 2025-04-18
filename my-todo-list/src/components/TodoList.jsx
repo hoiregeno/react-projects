@@ -12,7 +12,7 @@ function TodoList() {
             return "Please enter your task above.";
         }
 
-        if (existingTask.includes(trimmedTask)) {
+        if (existingTask.some(t => t.toLowerCase() === trimmedTask.toLowerCase())) {
             return "You already added that task!";
         }
 
