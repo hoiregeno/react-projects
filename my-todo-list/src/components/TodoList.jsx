@@ -3,7 +3,7 @@ import styles from '../styles/TodoList.module.css';
 import { useTheme } from '../context/ThemeContext';
 
 function TodoList() {
-    const { darkMode, toggleTheme } = useTheme(); // context hook
+    const { darkMode, toggleTheme } = useTheme();
 
     const [tasks, setTasks] = useState(() => {
         try {
@@ -19,39 +19,32 @@ function TodoList() {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
 
-    function validTask(task, existingTask) {
+    const validTask = (task, existingTask) => {
         const trimmedTask = task.trim();
         if (!trimmedTask) return "Please enter your task above.";
         if (existingTask.some(t => t.toLowerCase() === trimmedTask.toLowerCase())) return "You already added that task!";
         return null;
-    }
+    };
 
-    function addNewTask() {
+    const addNewTask = () => {
         const error = validTask(newTask, tasks);
+        if (error) {
+            setErrorMessage(error);
+            return;
+        }
+        setTasks(prevTasks => [...prevTasks, newTask.trim()]);
         setNewTask("");
-        if (error) return setErrorMessage(error);
-        setTasks(t => [...t, newTask.trim()]);
         setErrorMessage("");
-    }
+    };
 
-    function deleteTask(index) {
-        if (index < 0 || index >= tasks.length) return;
-        setTasks(tasks.filter((_, i) => i !== index));
-    }
-
-    function moveTaskUp(index) {
-        if (index <= 0) return;
+    const modifyTaskOrder = (index, direction) => {
         const updatedTasks = [...tasks];
-        [updatedTasks[index - 1], updatedTasks[index]] = [updatedTasks[index], updatedTasks[index - 1]];
-        setTasks(updatedTasks);
-    }
+        const swapIndex = direction === 'up' ? index - 1 : index + 1;
+        if (swapIndex < 0 || swapIndex >= tasks.length) return;
 
-    function moveTaskDown(index) {
-        if (index >= tasks.length - 1) return;
-        const updatedTasks = [...tasks];
-        [updatedTasks[index + 1], updatedTasks[index]] = [updatedTasks[index], updatedTasks[index + 1]];
+        [updatedTasks[swapIndex], updatedTasks[index]] = [updatedTasks[index], updatedTasks[swapIndex]];
         setTasks(updatedTasks);
-    }
+    };
 
     return (
         <div className={darkMode ? styles.dark : styles.light}>
@@ -61,7 +54,6 @@ function TodoList() {
             >
                 Toggle {darkMode ? "Light" : "Dark"} Mode
             </button>
-
 
             <h1 className={styles.title}>My Todo List</h1>
             <form className={styles.todoForm} onSubmit={e => e.preventDefault()}>
@@ -83,16 +75,16 @@ function TodoList() {
             {tasks.length === 0
                 ? <p className={styles.noTaskMessage}>You have no tasks at the moment.</p>
                 : <ul className={`${styles.taskList} ${darkMode ? styles.darkTaskList : ''}`}>
-                    {tasks.map((task, index) =>
+                    {tasks.map((task, index) => (
                         <li className={styles.taskItem} key={index}>
                             {task}
                             <div className={styles.controls}>
                                 <button className={styles.deleteBtn} onClick={() => deleteTask(index)}>Delete</button>
-                                <button className={styles.moveBtns} onClick={() => moveTaskUp(index)}>👆</button>
-                                <button className={styles.moveBtns} onClick={() => moveTaskDown(index)}>👇</button>
+                                <button className={styles.moveBtns} onClick={() => modifyTaskOrder(index, 'up')}>👆</button>
+                                <button className={styles.moveBtns} onClick={() => modifyTaskOrder(index, 'down')}>👇</button>
                             </div>
                         </li>
-                    )}
+                    ))}
                 </ul>
             }
         </div>
