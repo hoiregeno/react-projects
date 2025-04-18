@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './TodoList.module.css';
+import styles from './TodoList.module.css';
 
 function TodoList() {
     const [tasks, setTasks] = useState([]); // Task list state
@@ -80,8 +80,8 @@ function TodoList() {
 
     return (
         <>
-            <h1>My Todo List</h1>
-            <form onSubmit={event => event.preventDefault()}>
+            <h1 className={styles.title}>My Todo List</h1>
+            <form className={styles.todoForm} onSubmit={event => event.preventDefault()}>
                 <input
                     type="text"
                     placeholder="Enter your task here"
@@ -90,22 +90,23 @@ function TodoList() {
                         setNewTask(event.target.value) // Update input value
                         setErrorMessage(""); // Clear error message on typing
                     }}
+                    className={styles.taskInput}
                 />
-                <button type="submit" onClick={addNewTask}>Add</button>
+                <button type="submit" onClick={addNewTask} className={styles.addButton}>Add</button>
             </form>
 
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
             {tasks.length === 0
-                ? <p>You have no tasks at the moment.</p>
-                : <ul>
+                ? <p className={styles.noTaskMessage}>You have no tasks at the moment.</p>
+                : <ul className={styles.taskList}>
                     {tasks.map((task, index) =>
-                        <li key={index}>
+                        <li className={styles.taskItem} key={index}>
                             {task}
-                            <div className="controls">
-                                <button className="delete-btn" onClick={() => deleteTask(index)}>Delete</button>
-                                <button className="move-btns" onClick={() => moveTaskUp(index)}>👆</button>
-                                <button className="move-btns" onClick={() => moveTaskDown(index)}>👇</button>
+                            <div className={styles.controls}>
+                                <button className={styles.deleteBtn} onClick={() => deleteTask(index)}>Delete</button>
+                                <button className={styles.moveBtns} onClick={() => moveTaskUp(index)}>👆</button>
+                                <button className={styles.moveBtns} onClick={() => moveTaskDown(index)}>👇</button>
                             </div>
                         </li>
                     )}
