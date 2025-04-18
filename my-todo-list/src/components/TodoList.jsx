@@ -42,7 +42,7 @@ function TodoList() {
         setErrorMessage(""); // Clear any existing error message
     }
 
-    // Function to delete task by passing an index.
+    // Function to delete task by passing an index
     function deleteTask(index) {
         // Check if the index is within valid range.
         if (index < 0 || index >= tasks.length) return;
@@ -52,6 +52,7 @@ function TodoList() {
         setTasks(updatedTasks);
     }
 
+    // Function to move the task up
     function moveTaskUp(index) {
         // Prevent swapping if the task is already at the top
         if (index <= 0) return;
@@ -64,6 +65,7 @@ function TodoList() {
         setTasks(updatedTasks);
     }
 
+    // Function to move the task down
     function moveTaskDown(index) {
         // Prevent swapping if the task is already at the bottom
         if (index >= tasks.length - 1) return;
