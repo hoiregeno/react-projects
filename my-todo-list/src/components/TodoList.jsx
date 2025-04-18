@@ -57,7 +57,7 @@ function TodoList() {
             {tasks.length === 0
                 ? <p>You have no tasks at the moment.</p>
                 : <ul>
-                    {tasks.map(task => <li>{task}</li>)}
+                    {tasks.map((task, index) => <li key={index}>{task}</li>)}
                 </ul>
             }
 
