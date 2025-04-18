@@ -22,15 +22,17 @@ function TodoList() {
     function addNewTask() {
         const error = validTask(newTask, tasks);
 
+        setNewTask("");
+
         if (error) {
             setErrorMessage(error);
             return;
         }
 
+        // If there are no errors, do this.
         const trimmedTask = newTask.trim();
 
         setTasks(t => [...t, trimmedTask]);
-        setNewTask("");
         setErrorMessage("");
     }
 
