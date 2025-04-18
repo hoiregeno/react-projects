@@ -1,109 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import styles from './TodoList.module.css';
+import styles from '../styles/TodoList.module.css';
+import { useTheme } from '../context/ThemeContext';
 
 function TodoList() {
-    // 1)  Lazy init from localStorage, so you don't block renders.
+    const { darkMode, toggleTheme } = useTheme(); // context hook
+
     const [tasks, setTasks] = useState(() => {
         try {
             return JSON.parse(localStorage.getItem("tasks")) || [];
-        }
-        catch {
+        } catch {
             return [];
         }
-    }); // Task list state
-    const [newTask, setNewTask] = useState(""); // New task input state
-    const [errorMessage, setErrorMessage] = useState(""); // Error message state
+    });
+    const [newTask, setNewTask] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
-    // 2) Sync any change of "tasks" back to localStorage
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
 
-    // Function to validate a task
     function validTask(task, existingTask) {
-        const trimmedTask = task.trim(); // Trim whitespace
-
-        // If the task is empty, return an error
-        if (!trimmedTask) {
-            return "Please enter your task above.";
-        }
-
-        // If the task already exists, return an error
-        if (existingTask.some(t => t.toLowerCase() === trimmedTask.toLowerCase())) {
-            return "You already added that task!";
-        }
-
-        return null; // No error
+        const trimmedTask = task.trim();
+        if (!trimmedTask) return "Please enter your task above.";
+        if (existingTask.some(t => t.toLowerCase() === trimmedTask.toLowerCase())) return "You already added that task!";
+        return null;
     }
 
-    // Function to add a new task
     function addNewTask() {
-        const error = validTask(newTask, tasks); // Validate the task
-
-        setNewTask(""); // Clear the input field after validation
-
-        // If there's an error, set the error message and stop
-        if (error) {
-            setErrorMessage(error);
-            return;
-        }
-
-        const trimmedTask = newTask.trim(); // Get the trimmed task
-
-        // Add the task to the task list
-        setTasks(t => [...t, trimmedTask]);
-        setErrorMessage(""); // Clear any existing error message
+        const error = validTask(newTask, tasks);
+        setNewTask("");
+        if (error) return setErrorMessage(error);
+        setTasks(t => [...t, newTask.trim()]);
+        setErrorMessage("");
     }
 
-    // Function to delete task by passing an index
     function deleteTask(index) {
-        // Check if the index is within valid range.
         if (index < 0 || index >= tasks.length) return;
-
-        // Remove task if i does not match the index passed in.
-        const updatedTasks = tasks.filter((_, i) => i !== index);
-        setTasks(updatedTasks);
+        setTasks(tasks.filter((_, i) => i !== index));
     }
 
-    // Function to move the task up
     function moveTaskUp(index) {
-        // Prevent swapping if the task is already at the top
         if (index <= 0) return;
-
         const updatedTasks = [...tasks];
-
-        // Swap using array destructuring
         [updatedTasks[index - 1], updatedTasks[index]] = [updatedTasks[index], updatedTasks[index - 1]];
-
         setTasks(updatedTasks);
     }
 
-    // Function to move the task down
     function moveTaskDown(index) {
-        // Prevent swapping if the task is already at the bottom
         if (index >= tasks.length - 1) return;
-
         const updatedTasks = [...tasks];
-
-        // Swap using array destructuring
         [updatedTasks[index + 1], updatedTasks[index]] = [updatedTasks[index], updatedTasks[index + 1]];
-
         setTasks(updatedTasks);
     }
 
     return (
-        <>
+        <div className={darkMode ? styles.dark : styles.light}>
+            <button
+                onClick={toggleTheme}
+                className={`${styles.toggleBtn} ${darkMode ? styles.darkBtn : styles.lightBtn}`}
+            >
+                Toggle {darkMode ? "Light" : "Dark"} Mode
+            </button>
+
+
             <h1 className={styles.title}>My Todo List</h1>
-            <form className={styles.todoForm} onSubmit={event => event.preventDefault()}>
+            <form className={styles.todoForm} onSubmit={e => e.preventDefault()}>
                 <input
                     type="text"
                     placeholder="Enter your task here"
                     value={newTask}
-                    onChange={event => {
-                        setNewTask(event.target.value) // Update input value
-                        setErrorMessage(""); // Clear error message on typing
+                    onChange={e => {
+                        setNewTask(e.target.value);
+                        setErrorMessage("");
                     }}
-                    className={styles.taskInput}
+                    className={`${styles.taskInput} ${darkMode ? styles.darkInput : ''}`}
                 />
                 <button type="submit" onClick={addNewTask} className={styles.addButton}>Add</button>
             </form>
@@ -112,7 +82,7 @@ function TodoList() {
 
             {tasks.length === 0
                 ? <p className={styles.noTaskMessage}>You have no tasks at the moment.</p>
-                : <ul className={styles.taskList}>
+                : <ul className={`${styles.taskList} ${darkMode ? styles.darkTaskList : ''}`}>
                     {tasks.map((task, index) =>
                         <li className={styles.taskItem} key={index}>
                             {task}
@@ -125,8 +95,8 @@ function TodoList() {
                     )}
                 </ul>
             }
-        </>
-    )
+        </div>
+    );
 }
 
-export default TodoList
+export default TodoList;
