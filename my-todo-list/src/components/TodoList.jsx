@@ -1,39 +1,44 @@
 import React, { useState } from 'react'
 
 function TodoList() {
-    const [tasks, setTasks] = useState([]);
-    const [newTask, setNewTask] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
+    const [tasks, setTasks] = useState([]); // Task list state
+    const [newTask, setNewTask] = useState(""); // New task input state
+    const [errorMessage, setErrorMessage] = useState(""); // Error message state
 
+    // Function to validate a task
     function validTask(task, existingTask) {
-        const trimmedTask = task.trim();
+        const trimmedTask = task.trim(); // Trim whitespace
 
+        // If the task is empty, return an error
         if (!trimmedTask) {
             return "Please enter your task above.";
         }
 
+        // If the task already exists, return an error
         if (existingTask.some(t => t.toLowerCase() === trimmedTask.toLowerCase())) {
             return "You already added that task!";
         }
 
-        return null;
+        return null; // No error
     }
 
+    // Function to add a new task
     function addNewTask() {
-        const error = validTask(newTask, tasks);
+        const error = validTask(newTask, tasks); // Validate the task
 
-        setNewTask("");
+        setNewTask(""); // Clear the input field after validation
 
+        // If there's an error, set the error message and stop
         if (error) {
             setErrorMessage(error);
             return;
         }
 
-        // If there are no errors, do this.
-        const trimmedTask = newTask.trim();
+        const trimmedTask = newTask.trim(); // Get the trimmed task
 
+        // Add the task to the task list
         setTasks(t => [...t, trimmedTask]);
-        setErrorMessage("");
+        setErrorMessage(""); // Clear any existing error message
     }
 
     return (
@@ -45,8 +50,8 @@ function TodoList() {
                     placeholder="Enter your task here"
                     value={newTask}
                     onChange={event => {
-                        setNewTask(event.target.value)
-                        setErrorMessage("");
+                        setNewTask(event.target.value) // Update input value
+                        setErrorMessage(""); // Clear error message on typing
                     }}
                 />
                 <button
@@ -62,8 +67,6 @@ function TodoList() {
                     {tasks.map((task, index) => <li key={index}>{task}</li>)}
                 </ul>
             }
-
-
         </>
     )
 }
