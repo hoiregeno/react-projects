@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;800&display=swap');
+
 *,
 *::after,
 *::before {
@@ -6,6 +8,21 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-color: #1a202c; /* Dark cool background */
+    --primary-color: #a0aec0; /* Light blue-gray text for titles */
+    --secondary-color: #718096; /* Muted light gray */
+    --accent-color: #63b3ed; /* Softer blue for buttons */
+    --error-color: #f56565; /* Softer red for error messages */
+    --text-color: #edf2f7;  /* Light text for dark mode */
+    --card-bg: #2d3748;  /* Dark background for cards */
+    --input-bg: #4a5568;  /* Darker input field background */
+}
+
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: min(2rem, 5%);
 }
