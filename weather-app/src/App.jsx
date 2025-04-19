@@ -1,9 +1,9 @@
-import WeatherApp from "./components/WeatherApp.jsx";
+import WeatherCard from "./components/WeatherCard.jsx";
 
 function App() {
 
   return (
-    <WeatherApp />
+    <WeatherCard />
   )
 }
 
