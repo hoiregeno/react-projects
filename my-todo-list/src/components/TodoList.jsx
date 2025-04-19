@@ -37,9 +37,15 @@ function TodoList() {
         setErrorMessage("");
     };
 
+    const deleteTask = (index) => {
+        if (index < 0 || index >= tasks.length) return;
+        setTasks(tasks.filter((_, i) => i !== index));
+    };
+
     const modifyTaskOrder = (index, direction) => {
         const updatedTasks = [...tasks];
         const swapIndex = direction === 'up' ? index - 1 : index + 1;
+
         if (swapIndex < 0 || swapIndex >= tasks.length) return;
 
         [updatedTasks[swapIndex], updatedTasks[index]] = [updatedTasks[index], updatedTasks[swapIndex]];
