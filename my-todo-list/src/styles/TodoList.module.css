@@ -59,6 +59,10 @@
     font-size: var(--font-size-base);
 }
 
+.taskItem:last-child{
+    border-bottom: none;
+}
+
 /* ===== Input & Buttons ===== */
 .taskInput {
     flex: 1;
