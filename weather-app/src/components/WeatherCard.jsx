@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import countryNames from '../utils/countryList.js';
-import styles from '../styles/WeatherApp.module.css';
+import styles from '../styles/WeatherCard.module.css';
 
 function WeatherApp() {
     const [cityName, setCityName] = useState("");
@@ -49,7 +49,8 @@ function WeatherApp() {
                 <button type="submit">Search</button>
             </form>
 
-            {isLoading && <p>Loading...</p>}
+            {isLoading && <p className={styles.loadingText}>Loading...</p>}
+
             {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
             {weather && (
@@ -67,11 +68,13 @@ function WeatherApp() {
                     <h2 className={styles.tempDisplay}>
                         {(weather.main.temp - 273.15).toFixed(2)}°C
                     </h2>
-                    <p className={styles.humidityDisplay}>
-                        {weather.main.humidity}%
-                    </p>
+
                     <p className={styles.descDisplay}>
                         {weather.weather[0].description}
+                    </p>
+
+                    <p className={styles.humidityDisplay}>
+                        Humidity: {weather.main.humidity}%
                     </p>
                 </div>
             )}
