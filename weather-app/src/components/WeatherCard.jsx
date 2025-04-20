@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import countryNames from '../utils/countryList.js';
 import styles from '../styles/WeatherCard.module.css';
+// import countryNames from '../utils/countryList.js';
 
 function WeatherCard() {
     // State variables
