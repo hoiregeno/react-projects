@@ -23,7 +23,6 @@ function WeatherCard() {
         try {
             const response = await fetch(url);
 
-
             if (!response.ok) {
                 throw new Error(`Could not locate ${cityName}. Please try again.`);
             }
