@@ -56,7 +56,7 @@ export default function WeatherCard() {
                     <h1 className={styles.cityDisplay}>
                         {weather.name},<span className={styles.countryCode}>{weather.sys.country}</span>
                     </h1>
-                    <h2 className={styles.tempDisplay}>{(weather.main.temp - 273.15).toFixed(2)}°C</h2>
+                    <h2 className={styles.tempDisplay}>{Math.floor((weather.main.temp - 273.15))}°C</h2>
                     <img
                         src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                         alt={`${weather.weather[0].main} icon`}
