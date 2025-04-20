@@ -25,7 +25,7 @@ function WeatherCard() {
 
 
             if (!response.ok) {
-                throw new Error(`Could not locate ${cityName}.`);
+                throw new Error(`Could not locate ${cityName}. Please try again.`);
             }
 
             const data = await response.json();
@@ -74,7 +74,24 @@ function WeatherCard() {
 
             {weather && (
                 <div className={styles.card}>
-                    <h1>{weather.name}</h1>
+                    <h1 className={styles.cityDisplay}>
+                        {weather.name}<span className={styles.countryCode}>{weather.sys.country}</span>
+                    </h1>
+
+                    <h2 className={styles.tempDisplay}>
+                        {((weather.main.temp) - 273.15).toFixed(2)}°C
+                    </h2>
+
+                    <img
+                        src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                        alt={`${weather.weather[0].main} icon`}
+                    />
+
+                    <p className={styles.descDisplay}>
+                        {weather.weather[0].description}
+                    </p>
+
+                    <p className={styles.humidityDisplay}>Humidity: {weather.main.humidity}%</p>
                 </div>
             )}
         </div>
