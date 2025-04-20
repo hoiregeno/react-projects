@@ -46,7 +46,7 @@ function WeatherCard() {
         <div className={styles.wrapper}>
             <h1 className={styles.title}>Weather App</h1>
             <form
-                className={styles.weatherForm}
+                className={styles.searchForm}
                 onSubmit={getWeatherData}
             >
                 <input
@@ -54,8 +54,14 @@ function WeatherCard() {
                     placeholder="Enter a city"
                     value={cityName}
                     onChange={e => setCityName(e.target.value)}
+                    className={styles.searchInput}
                 />
-                <button type="submit">Search</button>
+                <button
+                    type="submit"
+                    className={styles.searchBtn}
+                >
+                    Search
+                </button>
             </form>
 
             {isLoading && (
