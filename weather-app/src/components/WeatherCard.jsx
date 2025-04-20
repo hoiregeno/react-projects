@@ -91,7 +91,9 @@ function WeatherCard() {
                         {weather.weather[0].description}
                     </p>
 
-                    <p className={styles.humidityDisplay}>Humidity: {weather.main.humidity}%</p>
+                    <p className={styles.humidityDisplay}>
+                        Humidity: {weather.main.humidity}%
+                    </p>
                 </div>
             )}
         </div>
