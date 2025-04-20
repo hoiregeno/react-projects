@@ -8,17 +8,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    --bg-color: #1a202c; /* Dark cool background */
-    --primary-color: #a0aec0; /* Light blue-gray text for titles */
-    --secondary-color: #718096; /* Muted light gray */
-    --accent-color: #3fa2e9; /* Softer blue for buttons */
-    --error-color: #f56565; /* Softer red for error messages */
-    --text-color: #edf2f7;  /* Light text for dark mode */
-    --card-bg: #2d3748;  /* Dark background for cards */
-    --input-bg: #4a5568;  /* Darker input field background */
-}
-
 body{
     min-height: 100vh;
     background-color: var(--bg-color);
