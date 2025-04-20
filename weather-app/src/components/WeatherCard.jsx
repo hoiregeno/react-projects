@@ -75,7 +75,7 @@ function WeatherCard() {
             {weather && (
                 <div className={styles.card}>
                     <h1 className={styles.cityDisplay}>
-                        {weather.name}<span className={styles.countryCode}>{weather.sys.country}</span>
+                        {weather.name},<span className={styles.countryCode}>{weather.sys.country}</span>
                     </h1>
 
                     <h2 className={styles.tempDisplay}>
