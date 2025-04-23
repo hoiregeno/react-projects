@@ -1,0 +1,83 @@
+/* DropdownNav.css */
+
+/* Global reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* Navbar */
+.nav1 {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #222;
+  padding: 0 1rem;
+}
+
+/* Logo */
+.logo {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Nav list */
+.nav1 ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+/* Nav items */
+.nav1 li {
+  position: relative;
+}
+
+/* Links and buttons */
+.nav1 a,
+.nav1 .dropdown-btn {
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font: inherit;
+  background: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+/* Submenu */
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  z-index: 1000;
+  margin-top: 0.25rem;
+}
+
+.submenu li a {
+  color: #222;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
