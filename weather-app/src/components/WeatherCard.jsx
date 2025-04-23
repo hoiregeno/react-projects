@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/WeatherCard.module.css';
+import '../utils/countryList.js';
+import countryNames from '../utils/countryList.js';
 
 export default function WeatherCard() {
     const [cityName, setCityName] = useState('');
@@ -54,7 +56,13 @@ export default function WeatherCard() {
             {weather && (
                 <div className={styles.card}>
                     <h1 className={styles.cityDisplay}>
-                        {weather.name},<span className={styles.countryCode}>{weather.sys.country}</span>
+                        {weather.name},
+                        <span className={styles.countryCode}>
+                            {
+                                // Look up the flag emoji, else fall back to raw code if missing.
+                                countryNames[weather.sys.country] || weather.sys.country
+                            }
+                        </span>
                     </h1>
                     <h2 className={styles.tempDisplay}>{Math.floor((weather.main.temp - 273.15))}°C</h2>
                     <img
