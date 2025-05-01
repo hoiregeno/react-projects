@@ -45,6 +45,7 @@ function WeatherApp() {
           value={cityName}
           onChange={(e) => {
             setCityName(e.target.value);
+            setWeather(null);
             setErrorMsg("");
           }}
         />
