@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import "../utils/countryList.js";
-import countryNames from "../utils/countryList.js";
 
 function WeatherCard() {
   const [cityName, setCityName] = useState("");
