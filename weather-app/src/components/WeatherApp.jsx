@@ -52,10 +52,16 @@ function WeatherApp() {
 
       {weather && (
         <div className="card">
-          <h1 className="city-display">Miami</h1>
-          <p className="temp-display">27°C</p>
-          <p className="humidity-display">Humidity: 70%</p>
-          <p className="desc-display">Cloudy</p>
+          <h1 className="city-display">{weather.name}</h1>
+          <p className="temp-display">
+            {Math.floor(weather.main.temp - 273.15)}°C
+          </p>
+          <p className="humidity-display">Humidity: {weather.main.humidity}%</p>
+          <p className="desc-display">{weather.weather[0].description}</p>
+          <img
+            src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+            alt=""
+          />
         </div>
       )}
     </>
