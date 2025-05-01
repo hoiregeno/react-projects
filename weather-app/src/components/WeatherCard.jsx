@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "../styles/WeatherCard.module.css";
 import "../utils/countryList.js";
 import countryNames from "../utils/countryList.js";
 
