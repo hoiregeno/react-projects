@@ -1,10 +1,7 @@
 import WeatherCard from "./components/WeatherCard.jsx";
 
 function App() {
-
-  return (
-    <WeatherCard />
-  )
+  return <WeatherCard />;
 }
 
-export default App
+export default App;
