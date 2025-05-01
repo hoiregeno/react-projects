@@ -51,6 +51,12 @@
   border: none;
   outline: none;
   border-radius: 0 50px 50px 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-form button:hover {
+  background-color: hsl(300, 100%, 15%);
 }
 
 .loading-display,
