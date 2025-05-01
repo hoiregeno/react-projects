@@ -12,5 +12,7 @@ body {
   display: flex;
   justify-content: center;
   padding: min(2rem, 7%);
-  background-color: turquoise;
+  background: linear-gradient(to bottom, turquoise, orange);
+  background-size: cover;
+  background-position: center;
 }
