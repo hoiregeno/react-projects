@@ -23,7 +23,6 @@ function WeatherApp() {
         throw new Error(`Could not locate "${cityName}". Please try again.`);
 
       const data = await response.json();
-      console.log(data);
       setWeather(data);
       setErrorMsg("");
     } catch (error) {
