@@ -70,7 +70,6 @@
 
 .card {
   margin: 2rem auto;
-  width: min(300px, 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
