@@ -7,10 +7,37 @@ function WeatherApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
+  const handleFetching = async (e) => {
+    e.preventDefault();
+    if (cityName.trim() === "") return;
+    setIsLoading(true);
+
+    const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+      );
+
+      if (!response.ok)
+        throw new Error(`Could not locate "${cityName}". Please try again.`);
+
+      const data = await response.json();
+      console.log(data);
+      setWeather(data);
+      setErrorMsg("");
+    } catch (error) {
+      console.log(error);
+      setErrorMsg(error.message);
+    } finally {
+      setCityName("");
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <h1 className="app-title">Weather App</h1>
-      <form className="search-form">
+      <form className="search-form" onSubmit={handleFetching}>
         <input
           type="text"
           placeholder="Enter city"
