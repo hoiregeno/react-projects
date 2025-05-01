@@ -15,7 +15,7 @@
   width: min(300px, 100%);
   display: flex;
   justify-content: space-between;
-  background-color: hsla(174, 100%, 80%, 0.2);
+  background-color: hsla(174, 100%, 20%, 0.1);
   backdrop-filter: blur(5px);
   border-radius: 50px;
   margin: 0 auto;
