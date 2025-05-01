@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./WeatherApp.css";
 
 function WeatherApp() {
   // Create state variables
