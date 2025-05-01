@@ -47,12 +47,17 @@ function WeatherApp() {
         <button type="submit">Search</button>
       </form>
 
-      <div className="card">
-        <h1 className="city-display">Miami</h1>
-        <p className="temp-display">27°C</p>
-        <p className="humidity-display">Humidity: 70%</p>
-        <p className="desc-display">Cloudy</p>
-      </div>
+      {isLoading && <p className="loading-display">Loading...</p>}
+      {errorMsg && <p className="error-display">{errorMsg}</p>}
+
+      {weather && (
+        <div className="card">
+          <h1 className="city-display">Miami</h1>
+          <p className="temp-display">27°C</p>
+          <p className="humidity-display">Humidity: 70%</p>
+          <p className="desc-display">Cloudy</p>
+        </div>
+      )}
     </>
   );
 }
