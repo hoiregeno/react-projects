@@ -28,6 +28,7 @@ function WeatherApp() {
     } catch (error) {
       console.log(error);
       setErrorMsg(error.message);
+      setWeather(null);
     } finally {
       setCityName("");
       setIsLoading(false);
@@ -42,7 +43,10 @@ function WeatherApp() {
           type="text"
           placeholder="Enter city"
           value={cityName}
-          onChange={(e) => setCityName(e.target.value)}
+          onChange={(e) => {
+            setCityName(e.target.value);
+            setErrorMsg("");
+          }}
         />
         <button type="submit">Search</button>
       </form>
@@ -52,7 +56,9 @@ function WeatherApp() {
 
       {weather && (
         <div className="card">
-          <h1 className="city-display">{weather.name}</h1>
+          <h1 className="city-display">
+            {weather.name}, {weather.sys.country}
+          </h1>
           <p className="temp-display">
             {Math.floor(weather.main.temp - 273.15)}°C
           </p>
