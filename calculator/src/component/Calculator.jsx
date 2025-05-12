@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function Calculator() {
-  //state variable to display value
   const [displayValue, setDisplayValue] = useState("");
   const keys = [
     "7",
@@ -22,22 +21,19 @@ function Calculator() {
     "/",
     "C",
   ];
+  const operators = ["+", "-", "*", "/", "=", "C"]; // include anything you want to specially style
 
-  // arrow function to append, clear and compute.
   const handleButtonClick = (key) => {
-    // if the key passed in is "=", compute.
     if (key === "=") {
       try {
-        const result = eval(displayValue);
-        setDisplayValue(String(result));
-      } catch (error) {
-        console.error(error);
+        setDisplayValue(String(eval(displayValue)));
+      } catch {
         setDisplayValue("Error");
       }
     } else if (key === "C") {
-      setDisplayValue(""); // if "C", clear.
+      setDisplayValue("");
     } else {
-      setDisplayValue((v) => v + key); // otherwise append
+      setDisplayValue((v) => v + key);
     }
   };
 
@@ -46,15 +42,27 @@ function Calculator() {
       <input type="text" value={displayValue} readOnly />
       <div className="keys-container">
         {keys.map((k) => (
-          <Button key={k} buttonKey={k} onClick={handleButtonClick} />
+          <Button
+            key={k}
+            buttonKey={k}
+            onClick={handleButtonClick}
+            className={operators.includes(k) ? "operator" : ""}
+          />
         ))}
       </div>
     </div>
   );
 }
 
-function Button({ buttonKey, onClick }) {
-  return <button onClick={() => onClick(buttonKey)}>{buttonKey}</button>;
+function Button({ buttonKey, onClick, className }) {
+  return (
+    <button
+      className={`calc-button ${className}`}
+      onClick={() => onClick(buttonKey)}
+    >
+      {buttonKey}
+    </button>
+  );
 }
 
 export default Calculator;
