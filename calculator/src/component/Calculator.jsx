@@ -3,8 +3,25 @@ import React, { useState } from "react";
 function Calculator() {
   //state variable to display value
   const [displayValue, setDisplayValue] = useState("");
-  const keys = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0", "."];
-  const operators = ["+", "-", "*", "/"];
+  const keys = [
+    "7",
+    "8",
+    "9",
+    "+",
+    "4",
+    "5",
+    "6",
+    "-",
+    "1",
+    "2",
+    "3",
+    "*",
+    "0",
+    ".",
+    "=",
+    "/",
+    "C",
+  ];
 
   // arrow function to append, clear and compute.
   const handleButtonClick = (key) => {
@@ -31,11 +48,6 @@ function Calculator() {
         {keys.map((k) => (
           <Button key={k} buttonKey={k} onClick={handleButtonClick} />
         ))}
-        {operators.map((op) => (
-          <Button key={op} buttonKey={op} onClick={handleButtonClick} />
-        ))}
-        <Button buttonKey="=" onClick={handleButtonClick} />
-        <Button buttonKey="C" onClick={handleButtonClick} />
       </div>
     </div>
   );
