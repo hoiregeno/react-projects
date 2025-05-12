@@ -31,11 +31,9 @@ function Calculator() {
         {keys.map((k) => (
           <Button key={k} buttonKey={k} onClick={handleButtonClick} />
         ))}
-
         {operators.map((op) => (
           <Button key={op} buttonKey={op} onClick={handleButtonClick} />
         ))}
-
         <Button buttonKey="=" onClick={handleButtonClick} />
         <Button buttonKey="C" onClick={handleButtonClick} />
       </div>
