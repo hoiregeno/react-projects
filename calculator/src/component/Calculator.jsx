@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button.jsx";
 
-export default function Calculator() {
+function Calculator() {
   const [display, setDisplay] = useState("");
   const keys = [
     "7",
@@ -55,3 +55,5 @@ export default function Calculator() {
     </div>
   );
 }
+
+export default Calculator;
